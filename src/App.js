@@ -1,24 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import BottomNavigation from "./components/bottomNavigation";
 
 function App() {
+  const [value, setValue] = useState(1);
+  const handleTabs = (event, newValue) => {
+    setValue(newValue);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BottomNavigation handleTabs={handleTabs} value={value} />
+    </>
   );
 }
 
