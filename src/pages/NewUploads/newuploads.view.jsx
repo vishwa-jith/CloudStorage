@@ -48,7 +48,12 @@ const useStyles = makeStyles((theme) =>
     },
   })
 );
-const NewUploadsView = ({ files, handleFileChange, handleCancel }) => {
+const NewUploadsView = ({
+  files,
+  handleFileChange,
+  handleCancel,
+  handleSubmit,
+}) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -70,7 +75,7 @@ const NewUploadsView = ({ files, handleFileChange, handleCancel }) => {
                 <Grid container justify="center" alignItems="center">
                   <CloudUploadIcon className={classes.font} />
                 </Grid>
-                <form>
+                <form onSubmit={handleSubmit}>
                   <Grid container justify="center" alignItems="center">
                     {files ? (
                       <>
@@ -79,6 +84,7 @@ const NewUploadsView = ({ files, handleFileChange, handleCancel }) => {
                             type="submit"
                             size="large"
                             className={classes.greencolor}
+                            onClick={handleSubmit}
                           >
                             <DoneIcon />
                           </Button>
