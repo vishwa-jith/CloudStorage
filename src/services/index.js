@@ -11,3 +11,7 @@ export const addNewObject = async (files) => {
   });
   return response.data;
 };
+export const listObjects = async () => {
+  var response = await axios.get(BASE_URL + `upload/objects`);
+  return response.data;
+};
