@@ -5,6 +5,7 @@ import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import SettingsIcon from "@material-ui/icons/Settings";
+import { NavLink } from "react-router-dom";
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
@@ -25,9 +26,24 @@ const BottomNavigationView = ({ handleTabs, value }) => {
       showLabels
       className={classes.root}
     >
-      <BottomNavigationAction label="New" icon={<AddCircleOutlineIcon />} />
-      <BottomNavigationAction label="Uploads" icon={<CloudUploadIcon />} />
-      <BottomNavigationAction label="Settings" icon={<SettingsIcon />} />
+      <BottomNavigationAction
+        component={NavLink}
+        to="/newUpload"
+        label="New"
+        icon={<AddCircleOutlineIcon />}
+      />
+      <BottomNavigationAction
+        component={NavLink}
+        to="/uploads"
+        label="Uploads"
+        icon={<CloudUploadIcon />}
+      />
+      <BottomNavigationAction
+        component={NavLink}
+        to="/settings"
+        label="Settings"
+        icon={<SettingsIcon />}
+      />
     </BottomNavigation>
   );
 };
