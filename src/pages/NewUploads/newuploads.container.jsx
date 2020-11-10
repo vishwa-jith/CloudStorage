@@ -11,7 +11,11 @@ const Uploads = () => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    addNewObject(files);
+    addNewObject(files)
+      .then((message) => {
+        setFiles(null);
+      })
+      .catch((error) => console.log(error));
   };
   return (
     <>
