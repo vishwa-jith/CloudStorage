@@ -1,11 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { Grid } from "@material-ui/core";
+import LabelIcon from "@material-ui/icons/Label";
+import DeleteIcon from "@material-ui/icons/Delete";
+import GetAppIcon from "@material-ui/icons/GetApp";
+import {
+  Grid,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon,
+} from "@material-ui/core";
+import StorageIcon from "@material-ui/icons/Storage";
+import TodayIcon from "@material-ui/icons/Today";
+import AccessTimeIcon from "@material-ui/icons/AccessTime";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -13,11 +25,14 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     height: "90vh",
     alignItems: "center",
+    overflow: "hidden",
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
-    flexBasis: "33.33%",
+    flexBasis: "50%",
     flexShrink: 0,
+    fontWeight: "bold",
+    color: theme.palette.text.secondary,
   },
   secondaryHeading: {
     fontSize: theme.typography.pxToRem(15),
@@ -28,6 +43,11 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("md")]: {
       width: "800px",
     },
+    fontSize: theme.typography.pxToRem(15),
+    color: theme.palette.text.secondary,
+  },
+  width: {
+    width: "95%",
   },
 }));
 
@@ -63,11 +83,48 @@ export default function ControlledAccordions({ expanded, handleChange, list }) {
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails className={classes.accord}>
-                  <Typography>{`LastModified ${new Date(
-                    item.LastModified
-                  ).toDateString()} ${new Date(
-                    item.LastModified
-                  ).toLocaleTimeString()}`}</Typography>
+                  <List className={classes.width}>
+                    <ListItem title="StorageClass">
+                      <ListItemIcon>
+                        <StorageIcon />
+                      </ListItemIcon>
+                      <ListItemText>{`${item.StorageClass}`}</ListItemText>
+                    </ListItem>
+                    <ListItem title="LastModified">
+                      <ListItemIcon>
+                        <TodayIcon />
+                      </ListItemIcon>
+                      <ListItemText>
+                        {`${new Date(item.LastModified).toDateString()}`}
+                      </ListItemText>
+                    </ListItem>
+                    <ListItem title="LastModifiedTime">
+                      <ListItemIcon>
+                        <AccessTimeIcon />
+                      </ListItemIcon>
+                      <ListItemText>
+                        {`${new Date(item.LastModified).toLocaleTimeString()}`}
+                      </ListItemText>
+                    </ListItem>
+                    <ListItem title="ETag">
+                      <ListItemIcon>
+                        <LabelIcon />
+                      </ListItemIcon>
+                      <ListItemText>{`${item.ETag}`}</ListItemText>
+                    </ListItem>
+                    <ListItem button>
+                      <ListItemIcon>
+                        <DeleteIcon />
+                      </ListItemIcon>
+                      <ListItemText>DELETE</ListItemText>
+                    </ListItem>
+                    <ListItem button>
+                      <ListItemIcon>
+                        <GetAppIcon />
+                      </ListItemIcon>
+                      <ListItemText>DOWNLOAD</ListItemText>
+                    </ListItem>
+                  </List>
                 </AccordionDetails>
               </Accordion>
             );
